@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export type ExperienceCardProps = {
   image: string;
@@ -31,6 +32,7 @@ export const ExperienceCard: React.FC<ExperienceCardProps> = ({
   };
 
   const [imgLoaded, setImgLoaded] = useState(false);
+  const navigate = useNavigate();
 
   return (
     <div className={`${variantStyles[variant]} rounded-xl shadow-sm hover:shadow-md transition-all duration-200 ease-in-out transform hover:-translate-y-1 max-w-sm mx-auto`}>
@@ -63,7 +65,7 @@ export const ExperienceCard: React.FC<ExperienceCardProps> = ({
           <div className="text-[12px] font-normal text-black">
             From <span className="text-[18px] font-bold tracking-tight text-black">₹{price}</span>
           </div>
-          <button className="bg-yellow-400 text-black text-sm font-medium px-3 py-1.5 rounded-lg hover:bg-yellow-500 transition">
+          <button onClick={() => navigate("/detail")} className="bg-yellow-400 text-black text-sm font-medium px-3 py-1.5 rounded-lg hover:bg-yellow-500 transition">
             View Details
           </button>
         </div>
