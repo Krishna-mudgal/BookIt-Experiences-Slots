@@ -34,7 +34,7 @@ const CheckoutPage: React.FC = () => {
             <div className="flex flex-row gap-8 w-full">
               {/* Left: Form */}
               <div>
-                <div className="w-full flex justify-start pl-[8px]">
+                <div className="w-full flex justify-start pl-2">
                     <button
                         className="flex items-center text-sm text-gray-600 mb-4"
                         onClick={() => navigate(-1)}
