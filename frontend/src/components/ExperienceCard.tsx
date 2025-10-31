@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import { useNavigate } from 'react-router-dom';
 
 export type ExperienceCardProps = {
+  _id: string,
   image: string;
   title: string;
   location: string;
@@ -12,6 +13,7 @@ export type ExperienceCardProps = {
 };
 
 export const ExperienceCard: React.FC<ExperienceCardProps> = ({
+  _id,
   image,
   title,
   location,
@@ -65,7 +67,7 @@ export const ExperienceCard: React.FC<ExperienceCardProps> = ({
           <div className="text-[12px] font-normal text-black">
             From <span className="text-[18px] font-bold tracking-tight text-black">₹{price}</span>
           </div>
-          <button onClick={() => navigate("/detail")} className="bg-yellow-400 text-black text-sm font-medium px-3 py-1.5 rounded-lg hover:bg-yellow-500 transition">
+          <button onClick={() => navigate(`/detail/${_id}`)} className="bg-yellow-400 text-black text-sm font-medium px-3 py-1.5 rounded-lg hover:bg-yellow-500 transition">
             View Details
           </button>
         </div>

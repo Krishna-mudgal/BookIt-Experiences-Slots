@@ -1,8 +1,9 @@
 import Home from "./pages/HomePage";
 import Navbar from "./components/NavBar";
-import { createBrowserRouter, RouterContextProvider, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import DetailsPage from "./pages/DetailPage"
 import CheckoutPage from "./pages/CheckoutPage";
+import ResultPage from "./pages/ResultPage";
 
 const router = createBrowserRouter([
   {
@@ -10,12 +11,16 @@ const router = createBrowserRouter([
     element: <Home />
   }, 
   {
-    path: "/details/:id",
+    path: "/detail/:id",
     element: <DetailsPage />
   },
   {
-    path: "/checkout/:id",
+    path: "/checkout",
     element: <CheckoutPage />
+  },
+  {
+    path: "/booking-complete",
+    element: <ResultPage />
   }
 ]);
 

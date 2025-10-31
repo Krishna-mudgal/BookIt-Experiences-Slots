@@ -51,6 +51,24 @@ const handleGetAllExpriences = async (req, res) => {
             data : result
         })
     } catch (error) {
+        console.error("Error getting experience:", error);
+        res.status(500).json({ error: "Internal Server Error" });
+    }
+}
+
+const handleGetExperiencesByID = async (req, res) => {
+    try {
+        const id = req.params.id;
+        if(!id) return res.status(400).json({
+            message: "Something went wrong"
+        })
+        const result = await experienceModel.findById(id);
+        if(!result) {
+            return res.status(404).json({
+                message: "Something went wrong"
+            })
+        } else return res.status(200).json(result);
+    } catch (error) {
         console.error("Error getting experience:", err);
         res.status(500).json({ error: "Internal Server Error" });
     }
@@ -58,5 +76,6 @@ const handleGetAllExpriences = async (req, res) => {
 
 module.exports = {
     handleCreateExperience,
-    handleGetAllExpriences
+    handleGetAllExpriences,
+    handleGetExperiencesByID
 }

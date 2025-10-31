@@ -23,14 +23,14 @@ const experienceSchema = mongoose.Schema({
     },
     slots: [
         {
-        date: { type: String, required: true },
-        times: [
-            {
-            time: { type: String, required: true },
-            capacity: { type: Number, required: true },
-            booked: { type: Number, default: 0 }
-            }
-        ]
+            date: { type: String, required: true },
+            times: [
+                {
+                    time: { type: String, required: true },
+                    capacity: { type: Number, required: true },
+                    booked: { type: Number, default: 0 }
+                }
+            ]
         }
     ]
 });
