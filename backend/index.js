@@ -7,7 +7,7 @@ const {promoRouter} = require("./routes/promo");
 require('dotenv').config();
 
 const mongoUrl = process.env.MONGO_URL;
-connectMongo(mongoUrl).then(() => console.log("MongoDb Connected")).catch(() => console.log("MongoDb disconnected"));
+connectMongo(mongoUrl).then(() => console.log("MongoDb Connected")).catch((e) => console.log("MongoDb disconnected", e));
 
 const app = express();
 
