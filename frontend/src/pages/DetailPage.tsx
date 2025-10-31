@@ -10,8 +10,8 @@ const DetailsPage: React.FC = () => {
   const [selectedTime, setSelectedTime] = useState<string | null>(null);
   const [quantity, setQuantity] = useState(1);
   const [experience, setExperience] = useState<any>(null);
+  const backend = import.meta.env.VITE_BACKEND_URL;
 
-  // Quantity handlers
   const incrementQty = () => setQuantity((q) => Math.min(q + 1, 10));
   const decrementQty = () => setQuantity((q) => Math.max(q - 1, 1));
 
@@ -35,7 +35,7 @@ const DetailsPage: React.FC = () => {
   };
 
   const getDataById = async () => {
-    const result = await fetch(`http://localhost:3000/experiences/${id}`, {
+    const result = await fetch(`${backend}/experiences/${id}`, {
       method: "GET",
     });
     const data = await result.json();
@@ -51,7 +51,6 @@ const DetailsPage: React.FC = () => {
         setSelectedTime(exp.slots[0].times?.[0]?.time || "");
       }
     })();
-    // eslint-disable-next-line
   }, []);
 
   if (!experience) {
@@ -62,7 +61,6 @@ const DetailsPage: React.FC = () => {
     );
   }
 
-  // Extract dates and times from backend data
   const availableDates = experience.slots.map((s: any) => s.date);
   const selectedSlot = experience.slots.find((slot: any) => slot.date === selectedDate);
   const availableTimes = selectedSlot ? selectedSlot.times.map((t: any) => ({

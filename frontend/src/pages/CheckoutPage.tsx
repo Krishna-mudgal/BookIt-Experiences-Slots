@@ -2,10 +2,12 @@ import { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import Navbar from "../components/NavBar";
 
+
 const CheckoutPage = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const booking = location.state;
+  const backend = import.meta.env.VITE_BACKEND_URL;
 
   const [form, setForm] = useState({
     name: "",
@@ -25,7 +27,7 @@ const CheckoutPage = () => {
 
   const handleApplyPromo = async () => {
     try {
-      const response = await fetch("http://localhost:3000/promos/verify", {
+      const response = await fetch(`${backend}/promos/verify`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -39,7 +41,10 @@ const CheckoutPage = () => {
       const data = await response.json();
       if (!response.ok) throw new Error(data.message || "Invalid promo code");
 
-      // Determine discount based on type
+      if (total < data.promo.minimumAmount) {
+        throw new Error(`Minimum amount to apply this promo is ₹${data.promo.minimumAmount}`);
+      }
+
       let discountAmount = 0;
       if (data.promo.type === "percent") {
         discountAmount = (total * data.promo.value) / 100;
@@ -70,7 +75,7 @@ const CheckoutPage = () => {
     }
 
     try {
-      const response = await fetch("http://localhost:3000/bookings", {
+      const response = await fetch(`${backend}/bookings`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -85,7 +90,7 @@ const CheckoutPage = () => {
           price: booking.price,
           taxes: booking.taxes,
           promoCode: form.promo || null,
-          finalAmount: promoResult.discountedTotal || total, // ✅ send discounted amount
+          finalAmount: promoResult.discountedTotal || total,
         }),
       });
 
@@ -107,7 +112,6 @@ const CheckoutPage = () => {
           <div className="w-full flex justify-center items-center">
             <div className="flex flex-col gap-4 w-full max-w-5xl">
               <div className="flex flex-row gap-8 w-full">
-                {/* Left: Form */}
                 <div>
                   <div className="w-full flex justify-start pl-2">
                     <button
@@ -182,7 +186,6 @@ const CheckoutPage = () => {
                   </div>
                 </div>
 
-                {/* Right: Summary */}
                 <div className="bg-gray-100 rounded-xl shadow-sm p-8 w-96 min-w-[320px] flex flex-col items-stretch">
                   <div className="mb-2 flex justify-between text-gray-600">
                     <span>Experience</span>

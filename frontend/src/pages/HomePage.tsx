@@ -6,16 +6,16 @@ import { useEffect, useState } from 'react';
 const Home = () => {
   const [experiences, setExperiences] = useState<ExperienceCardProps[]>([]);
   const [searchTerm, setSearchTerm] = useState('');
+  const backend = import.meta.env.VITE_BACKEND_URL;
 
   const getAllExperience = async (): Promise<ExperienceCardProps[]> => {
     try {
-      const response = await fetch("http://localhost:3000/experiences/", {
+      const response = await fetch(`${backend}/experiences/`, {
         method: "GET",
       });
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
-      // Most Express APIs just return the array directly
       const data = await response.json();
       return data.data as ExperienceCardProps[];
     } catch (error) {

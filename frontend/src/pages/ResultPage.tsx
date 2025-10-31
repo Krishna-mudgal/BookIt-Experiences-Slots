@@ -12,7 +12,6 @@ const ResultPage: React.FC = () => {
     <>
       <Navbar onSearch={() => {}} />
       <div className="min-h-screen flex flex-col items-center justify-center bg-gray-50">
-        {/* Green Check Icon */}
         <div className="rounded-full bg-green-500 w-16 h-16 flex items-center justify-center mb-6">
           <svg width="38" height="38" fill="none" viewBox="0 0 38 38">
             <circle cx="19" cy="19" r="19" fill="none" />
