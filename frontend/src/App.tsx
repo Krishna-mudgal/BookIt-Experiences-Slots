@@ -1,5 +1,4 @@
 import Home from "./pages/HomePage";
-import Navbar from "./components/NavBar";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import DetailsPage from "./pages/DetailPage"
 import CheckoutPage from "./pages/CheckoutPage";
