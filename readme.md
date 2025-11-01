@@ -46,11 +46,11 @@ BookIt Experiences is a booking platform where users can browse experiences, sel
 
 ## Environment Variables
 - Backend `.env`:
-MONGODB_URI=your_mongodb_connection_string
+MONGO_URI=your_mongodb_connection_string
 
 text
 - Frontend `.env`:
-REACT_APP_BACKEND_URL=https://your-backend-url
+VITE_BACKEND_URL=https://your-backend-url
 
 text
 
