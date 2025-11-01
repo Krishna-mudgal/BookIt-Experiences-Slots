@@ -108,11 +108,12 @@ const CheckoutPage = () => {
     <>
       <Navbar onSearch={() => {}} />
       <div className="min-h-screen bg-gray-50">
-        <div className="flex flex-col pt-8 mx-auto max-w-7xl">
+        <div className="flex flex-col pt-8 mx-auto max-w-7xl px-2 sm:px-4">
           <div className="w-full flex justify-center items-center">
             <div className="flex flex-col gap-4 w-full max-w-5xl">
-              <div className="flex flex-row gap-8 w-full">
-                <div>
+              <div className="flex flex-col md:flex-row gap-8 w-full">
+                {/* Left: Form */}
+                <div className="w-full md:w-2/3">
                   <div className="w-full flex justify-start pl-2">
                     <button
                       className="flex items-center text-sm text-gray-600 mb-4"
@@ -121,9 +122,8 @@ const CheckoutPage = () => {
                       &larr; Checkout
                     </button>
                   </div>
-
-                  <div className="bg-gray-100 rounded-xl shadow-sm p-8 flex-1 max-w-2xl">
-                    <div className="flex gap-5 mb-5">
+                  <div className="bg-gray-100 rounded-xl shadow-sm p-4 sm:p-8 flex-1 max-w-2xl">
+                    <div className="flex flex-col sm:flex-row gap-5 mb-5">
                       <div className="flex-1">
                         <div className="text-sm mb-1 text-gray-600">Full name</div>
                         <input
@@ -186,7 +186,9 @@ const CheckoutPage = () => {
                   </div>
                 </div>
 
-                <div className="bg-gray-100 rounded-xl shadow-sm p-8 w-96 min-w-[320px] flex flex-col items-stretch">
+                {/* Right: Summary */}
+                <div className="bg-gray-100 rounded-xl shadow-sm p-4 sm:p-8 w-full md:w-96 min-w-[220px] flex flex-col items-stretch mt-8 md:mt-0">
+                  {/* The rest remains unchanged */}
                   <div className="mb-2 flex justify-between text-gray-600">
                     <span>Experience</span>
                     <span className="text-black">{booking.experience}</span>
